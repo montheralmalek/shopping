@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shopping/controllers/home_conntroller.dart';
-import 'package:shopping/view/widgets/products_listview_builder.dart';
+import 'package:shopping/view/widgets/item_card.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String id = '/';
@@ -11,18 +10,31 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProductControllerImp());
-    return GetBuilder<ProductControllerImp>(builder: (controller) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Shopping App'),
-        ),
-        body: ModalProgressHUD(
-          inAsyncCall: controller.isOnLoading,
-          child: ProductsListViewBuilder(
-            productsList: controller.productsList,
-          ),
-        ),
-      );
-    });
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Shopping App'),
+      ),
+      body: GetBuilder<ProductControllerImp>(builder: (controller) {
+        if (controller.isOnLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 250,
+              childAspectRatio: 5 / 7,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemCount: controller.productsList.length,
+            itemBuilder: (context, index) {
+              return ItemCrad(product: controller.productsList[index]);
+            },
+          );
+        }
+      }),
+    );
   }
 }

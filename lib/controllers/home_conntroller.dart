@@ -10,7 +10,7 @@ abstract class ProductController extends GetxController {
 
 class ProductControllerImp extends ProductController {
   late ProductServiceImp _productService;
-  bool isOnLoading = false;
+  bool isOnLoading = true;
   List<ProductModel> productsList = [];
   ProductModel? selectedProduct;
   @override

@@ -23,14 +23,13 @@ class FavoriteIconButton extends StatefulWidget {
 }
 
 class _FavoriteIconButtonState extends State<FavoriteIconButton> {
-  Icon? icon;
   bool? isFound;
   @override
   Widget build(BuildContext context) {
     return IconButton(
       iconSize: widget.iconSize,
       padding: EdgeInsets.zero,
-      icon: icon!,
+      icon: const Icon(Icons.favorite_border),
       onPressed: () {},
     );
   }

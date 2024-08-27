@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shopping/controllers/home_conntroller.dart';
-import 'package:shopping/view/widgets/products_listview_builder.dart';
 
 class ProductScreen extends GetView<ProductControllerImp> {
   static const String id = '/product';
