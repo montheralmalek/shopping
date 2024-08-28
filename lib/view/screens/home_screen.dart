@@ -4,7 +4,7 @@ import 'package:shopping/controllers/product_conntroller.dart';
 import 'package:shopping/view/widgets/item_card.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const String id = '/';
+  static const String id = '/home';
   const HomeScreen({super.key});
 
   @override
