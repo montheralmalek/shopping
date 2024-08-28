@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping/controllers/home_conntroller.dart';
+import 'package:shopping/controllers/product_conntroller.dart';
 import 'package:shopping/view/widgets/item_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,10 +9,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductControllerImp());
+    var controller = Get.put(ProductControllerImp());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shopping App'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: controller.goToCartScreen,
+              icon: Icon(Icons.shopping_cart_outlined))
+        ],
       ),
       body: GetBuilder<ProductControllerImp>(builder: (controller) {
         if (controller.isOnLoading) {

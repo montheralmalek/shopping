@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:shopping/controllers/home_conntroller.dart';
+import 'package:shopping/controllers/product_conntroller.dart';
 import 'package:shopping/data/models/product_model.dart';
 import 'package:shopping/view/widgets/add_to_cart_button.dart';
 import 'package:shopping/view/widgets/favorite_icon_button.dart';

@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:shopping/core/services/product_service.dart';
 import 'package:shopping/data/models/product_model.dart';
+import 'package:shopping/view/screens/cart_screen.dart';
 import 'package:shopping/view/screens/product_screen.dart';
 
 abstract class ProductController extends GetxController {
   Future<List<ProductModel>> getAllPruducts();
   void goToProductScreen(ProductModel product);
+  void goToCartScreen();
 }
 
 class ProductControllerImp extends ProductController {
@@ -38,5 +40,10 @@ class ProductControllerImp extends ProductController {
   void goToProductScreen(ProductModel product) {
     selectedProduct = product;
     Get.toNamed(ProductScreen.id);
+  }
+
+  @override
+  void goToCartScreen() {
+    Get.toNamed(CartScreen.id);
   }
 }

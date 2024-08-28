@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:shopping/controllers/home_conntroller.dart';
+import 'package:shopping/controllers/product_conntroller.dart';
 
 class ProductScreen extends GetView<ProductControllerImp> {
   static const String id = '/product';
