@@ -23,5 +23,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/*"
-          tag: v0.0.1
+          tag: v1.0.0+1
 
