@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping/controllers/cart_controller.dart';
-import 'package:shopping/view/widgets/checkout_form_widgiet.dart';
+import 'package:shopping/view/widgets/checkout_form_widget.dart';
 import 'package:shopping/view/widgets/horzontal_divider_titled.dart';
 
 import '../widgets/carts_builder_widget.dart';
@@ -24,17 +24,19 @@ class CartScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Column(children: [
-            const TotalPriceWidget(),
-            SingleChildScrollView(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    HorzontalDivdierTitled(text: 'Order Placement'),
-                    CheckoutForm(),
-                  ]),
+            TotalPriceWidget(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      HorzontalDivdierTitled(text: 'Order Placement'),
+                      CheckoutForm(),
+                    ]),
+              ),
             ),
           ]),
         ),

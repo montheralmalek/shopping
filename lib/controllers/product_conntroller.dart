@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping/core/constants/constant.dart';
@@ -39,10 +40,11 @@ class ProductControllerImp extends ProductController {
   @override
   Future<void> setProductList() async {
     try {
-      productsList = await getAllPruducts();
-      if (productsList.isEmpty) {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.none) {
         productsList = _productBox.values.toList();
       } else {
+        productsList = await getAllPruducts();
         await _productBox.clear();
         await _productBox.addAll(productsList);
       }
