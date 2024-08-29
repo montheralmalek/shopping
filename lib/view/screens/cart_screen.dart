@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart%20';
+import 'package:get/get.dart';
 import 'package:shopping/controllers/cart_controller.dart';
+import 'package:shopping/view/widgets/checkout_form_widgiet.dart';
+import 'package:shopping/view/widgets/horzontal_divider_titled.dart';
 
+import '../widgets/carts_builder_widget.dart';
 import '../widgets/total_price_widget.dart';
 
 class CartScreen extends StatelessWidget {
@@ -11,7 +13,6 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartControllerImp());
     return GetBuilder<CartControllerImp>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
@@ -26,13 +27,15 @@ class CartScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
-            TotalPriceWidget(),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: controller.cartsList.length,
-                    itemBuilder: (context, index) {
-                      return Text('$index');
-                    }))
+            const TotalPriceWidget(),
+            SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HorzontalDivdierTitled(text: 'Order Placement'),
+                    CheckoutForm(),
+                  ]),
+            ),
           ]),
         ),
       );

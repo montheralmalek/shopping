@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart%20';
+import 'package:shopping/controllers/cart_controller.dart';
 import 'package:shopping/data/models/product_model.dart';
 
-class AddToCartButton extends StatelessWidget {
+class AddToCartButton extends GetView<CartControllerImp> {
   const AddToCartButton({
     super.key,
     required this.product,
@@ -25,7 +27,7 @@ class AddToCartButton extends StatelessWidget {
     return IconButton(
       padding: EdgeInsets.zero,
       icon: const Icon(Icons.add_shopping_cart_outlined),
-      onPressed: () {},
+      onPressed: () => controller.addToCart(product),
     );
   }
 }

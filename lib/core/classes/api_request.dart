@@ -5,13 +5,8 @@ import 'package:dio/dio.dart';
 class ApiRequest {
   final Dio _dio = Dio();
   Response? _response;
-  Future<Response> get({required String httpUrl, CancelToken? token}) async {
+  Future<Response> get({required String httpUrl}) async {
     try {
-      Map<String, dynamic> headers = {};
-      headers.addAll({'content-Type': 'application/x-www-form-urlencoded'});
-      if (token != null) {
-        headers.addAll({'Authorization': 'Bearer $token'});
-      }
       _response = await _dio.get(httpUrl);
 
       return _response!;
@@ -24,14 +19,8 @@ class ApiRequest {
     }
   }
 
-  Future<Response> post(
-      {required String url, required FormData data, CancelToken? token}) async {
+  Future<Response> post({required String url, required Object data}) async {
     try {
-      Map<String, dynamic> headers = {};
-      headers.addAll({'content-Type': 'application/x-www-form-urlencoded'});
-      if (token != null) {
-        headers.addAll({'Authorization': 'Bearer $token'});
-      }
       _response = await _dio.post(url, data: data);
       return _response!;
     } on DioException catch (e) {

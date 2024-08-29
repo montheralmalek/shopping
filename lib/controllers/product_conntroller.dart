@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping/core/constants/constant.dart';
+import 'package:shopping/core/services/app_service.dart';
+import 'package:shopping/core/services/auth_service.dart';
+import 'package:shopping/core/services/cart_service.dart';
 import 'package:shopping/core/services/product_service.dart';
 import 'package:shopping/data/models/product_model.dart';
 import 'package:shopping/view/screens/cart_screen.dart';
+import 'package:shopping/view/screens/login_screen.dart';
 import 'package:shopping/view/screens/product_screen.dart';
 
 abstract class ProductController extends GetxController {
@@ -11,18 +15,23 @@ abstract class ProductController extends GetxController {
   Future<void> setProductList();
   void goToProductScreen(ProductModel product);
   void goToCartScreen();
+  void goToLogInScreen();
 }
 
 class ProductControllerImp extends ProductController {
   final _productBox = Hive.box<ProductModel>(kProduct);
+  late AuthServiceImp _authService;
   late ProductServiceImp _productService;
+
   bool isOnLoading = true;
+  late bool isLogedIn;
   List<ProductModel> productsList = [];
   ProductModel? selectedProduct;
   @override
   void onInit() async {
     _productService = Get.find();
-
+    _authService = Get.find();
+    isLogedIn = _authService.isLogedIn;
     await setProductList();
     super.onInit();
   }
@@ -66,5 +75,10 @@ class ProductControllerImp extends ProductController {
   @override
   void goToCartScreen() {
     Get.toNamed(CartScreen.id);
+  }
+
+  @override
+  void goToLogInScreen() {
+    Get.toNamed(LoginScreen.id);
   }
 }

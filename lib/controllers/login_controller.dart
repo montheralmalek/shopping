@@ -1,35 +1,47 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart%20';
-import 'package:shopping/core/services/app_service.dart';
-import 'package:shopping/core/services/login_service.dart';
+import 'package:shopping/core/services/auth_service.dart';
 import 'package:shopping/data/models/login_model.dart';
 import 'package:shopping/view/screens/home_screen.dart';
 
-abstract class LoginController extends GetxController {}
+abstract class LoginController extends GetxController {
+  void login();
+  void goToHomeScreen();
+}
 
 class LoginControllerImp extends LoginController {
-  late LoginServiceImp _loginService;
+  late AuthServiceImp _loginService;
   late TextEditingController username, password;
+  bool isOnLoading = false;
   @override
   void onInit() {
     _loginService = Get.find();
-    username = TextEditingController(text: 'mor_2314');
-    password = TextEditingController(text: '83r5^_');
+    username = TextEditingController();
+    password = TextEditingController();
     super.onInit();
   }
 
+  @override
   void login() async {
-    try {
-      var result = await _loginService
-          .login(LoginModel(username: username.text, password: password.text));
-      debugPrint('--------$result');
-      if (result.isNotEmpty) {
-        AppService appService = Get.find();
-        await appService.sharedPreferences.setString('token', result);
-        Get.toNamed(HomeScreen.id);
+    if (username.text.isNotEmpty && password.text.isNotEmpty) {
+      try {
+        isOnLoading = true;
+        update();
+        var result = await _loginService.login(
+            LoginModel(username: username.text, password: password.text));
+        if (result.isNotEmpty) {
+          goToHomeScreen();
+        }
+      } catch (e) {
+        Get.snackbar('Error', 'please inssure login data');
       }
-    } on Exception catch (e) {
-      debugPrint('--------$e');
+      isOnLoading = false;
+      update();
     }
+  }
+
+  @override
+  void goToHomeScreen() {
+    Get.offAllNamed(HomeScreen.id);
   }
 }

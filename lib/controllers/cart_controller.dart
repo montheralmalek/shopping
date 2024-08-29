@@ -1,14 +1,19 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping/core/constants/constant.dart';
+import 'package:shopping/core/services/app_service.dart';
+import 'package:shopping/core/services/auth_service.dart';
 import 'package:shopping/core/services/cart_service.dart';
 import 'package:shopping/data/models/cart_model.dart';
+import 'package:shopping/data/models/product_model.dart';
+import 'package:shopping/view/screens/login_screen.dart';
 
 abstract class CartController extends GetxController {
   Future<List<CartModel>> getCarts();
   Future<void> setCartList();
   double getTotalPrice();
   void goToCartScreen();
+  void addToCart(ProductModel product);
 }
 
 class CartControllerImp extends CartController {
@@ -17,10 +22,12 @@ class CartControllerImp extends CartController {
   bool isOnLoading = true;
   List<CartModel> cartsList = [];
   double _totalPrice = 0.0;
+  late AuthServiceImp _authService;
 
   @override
   void onInit() async {
     _cartService = Get.find();
+    _authService = Get.find();
     await setCartList();
     super.onInit();
   }
@@ -60,5 +67,13 @@ class CartControllerImp extends CartController {
   @override
   double getTotalPrice() {
     return _totalPrice;
+  }
+
+  @override
+  void addToCart(ProductModel product) {
+    if (_authService.isLogedIn) {
+    } else {
+      Get.toNamed(LoginScreen.id);
+    }
   }
 }
