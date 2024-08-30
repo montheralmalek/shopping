@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -44,9 +45,13 @@ class ItemCrad extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        Image(
-                          image: NetworkImage(product.img),
-                          //fit: BoxFit.,
+                        CachedNetworkImage(
+                          imageUrl: product.img,
+                          errorWidget: (context, url, error) => const Icon(
+                            Icons.cloud_download,
+                            size: 48,
+                            color: Colors.black26,
+                          ),
                         ),
                         //** ------- Favorite Button ----------- */
                         Positioned(

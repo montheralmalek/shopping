@@ -24,10 +24,12 @@ class AddToCartButton extends GetView<CartControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      padding: EdgeInsets.zero,
-      icon: const Icon(Icons.add_shopping_cart_outlined),
-      onPressed: () => controller.addToCart(product),
-    );
+    return GetBuilder<CartControllerImp>(builder: (controller) {
+      return IconButton(
+        padding: EdgeInsets.zero,
+        icon: const Icon(Icons.add_shopping_cart_outlined),
+        onPressed: () => controller.addToCart(product),
+      );
+    });
   }
 }

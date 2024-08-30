@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart%20';
 import 'package:image_picker/image_picker.dart';
 import 'package:shopping/controllers/cart_controller.dart';
-import 'package:shopping/view/widgets/custom_textfield.dart';
 
 class UploadImageWidget extends GetView<CartControllerImp> {
   const UploadImageWidget({super.key});

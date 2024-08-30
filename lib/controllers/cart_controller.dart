@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shopping/core/constants/constant.dart';
-import 'package:shopping/core/services/app_service.dart';
 import 'package:shopping/core/services/auth_service.dart';
 import 'package:shopping/core/services/cart_service.dart';
 import 'package:shopping/data/models/cart_model.dart';
@@ -53,11 +52,6 @@ class CartControllerImp extends CartController {
     } catch (e) {
       cartsList = _cartBox.values.toList();
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

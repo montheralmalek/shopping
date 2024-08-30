@@ -9,10 +9,12 @@ class CartsBuilderWidget extends GetView<CartControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: controller.cartsList.length,
-        itemBuilder: (context, index) {
-          return Text('$index');
-        });
+    return GetBuilder<CartControllerImp>(builder: (controller) {
+      return ListView.builder(
+          itemCount: controller.cartsList.length,
+          itemBuilder: (context, index) {
+            return Text('$index');
+          });
+    });
   }
 }

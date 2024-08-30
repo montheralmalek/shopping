@@ -2,9 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping/core/constants/constant.dart';
-import 'package:shopping/core/services/app_service.dart';
 import 'package:shopping/core/services/auth_service.dart';
-import 'package:shopping/core/services/cart_service.dart';
 import 'package:shopping/core/services/product_service.dart';
 import 'package:shopping/data/models/product_model.dart';
 import 'package:shopping/view/screens/cart_screen.dart';
@@ -51,20 +49,14 @@ class ProductControllerImp extends ProductController {
     } on Exception catch (e) {
       productsList = _productBox.values.toList();
     }
+    isOnLoading = false;
     update();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
   Future<List<ProductModel>> getAllPruducts() async {
-    isOnLoading = true;
     var result = await _productService.getProducts();
-    isOnLoading = false;
-    update();
+
     return result;
   }
 
