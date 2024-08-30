@@ -25,13 +25,13 @@ jobs:
       - name: Flutter pub get    
         run: flutter pub get
 
-      # - name: Build APK
-      #   run: flutter build apk --release --split-per-abi
+      - name: Build APK
+        run: flutter build apk --release --split-per-abi
 
       - name: Push to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk'
+          artifacts: 'build/app/outputs/flutter-apk/*'
           token: ${{secrets.REPO_SECRET}}
           tag: v1.0.4
 
